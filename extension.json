@@ -1,0 +1,9 @@
+{
+  "name": "Templ",
+  "version": "0.0.1",
+  "authors": [
+    "Mehmet Akif Duba <mail@makifdb.com>"
+  ],
+  "description": "Templ language support for Zed",
+  "repository": "https://github.com/makifdb/zed-templ"
+}
