@@ -1,5 +1,5 @@
-id = "templ-dev"
-name = "Templ (development)"
+id = "templ"
+name = "Templ"
 version = "0.0.2"
 schema_version = 1
 authors = ["Mehmet Akif Duba <mail@makifdb.com>"]
