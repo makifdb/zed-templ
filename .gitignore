@@ -1,2 +1,4 @@
-
-grammars/templ.wasm
+grammars/
+extension.wasm
+Cargo.lock
+target/
