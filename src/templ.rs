@@ -1,5 +1,6 @@
 use std::fs;
-use zed_extension_api::{self as zed, Result};
+use zed::settings::LspSettings;
+use zed_extension_api::{self as zed, LanguageServerId, Result};
 
 struct TemplExtension {
     cached_binary_path: Option<String>,
@@ -8,7 +9,7 @@ struct TemplExtension {
 impl TemplExtension {
     fn language_server_binary_path(
         &mut self,
-        config: zed::LanguageServerConfig,
+        language_server_id: &LanguageServerId,
         worktree: &zed::Worktree,
     ) -> Result<String> {
         if let Some(path) = &self.cached_binary_path {
@@ -23,7 +24,7 @@ impl TemplExtension {
         }
 
         zed::set_language_server_installation_status(
-            &config.name,
+            &language_server_id,
             &zed::LanguageServerInstallationStatus::CheckingForUpdate,
         );
         let release = zed::latest_github_release(
@@ -60,7 +61,7 @@ impl TemplExtension {
 
         if !fs::metadata(&binary_path).map_or(false, |stat| stat.is_file()) {
             zed::set_language_server_installation_status(
-                &config.name,
+                &language_server_id,
                 &zed::LanguageServerInstallationStatus::Downloading,
             );
 
@@ -99,11 +100,11 @@ impl zed::Extension for TemplExtension {
 
     fn language_server_command(
         &mut self,
-        config: zed::LanguageServerConfig,
+        language_server_id: &LanguageServerId,
         worktree: &zed::Worktree,
     ) -> Result<zed::Command> {
         Ok(zed::Command {
-            command: self.language_server_binary_path(config, worktree)?,
+            command: self.language_server_binary_path(language_server_id, worktree)?,
             // Pass the log argument to the language server to debug it
             // args: vec![
             //     "lsp".to_string(),
@@ -113,6 +114,18 @@ impl zed::Extension for TemplExtension {
             args: vec!["lsp".to_string()],
             env: Default::default(),
         })
+    }
+
+    fn language_server_workspace_configuration(
+        &mut self,
+        server_id: &LanguageServerId,
+        worktree: &zed::Worktree,
+    ) -> Result<Option<zed::serde_json::Value>> {
+        let settings = LspSettings::for_worktree(server_id.as_ref(), worktree)
+            .ok()
+            .and_then(|lsp_settings| lsp_settings.settings.clone())
+            .unwrap_or_default();
+        Ok(Some(settings))
     }
 }
 
