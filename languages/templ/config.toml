@@ -23,6 +23,7 @@ scope_opt_in_language_servers = [
 ]
 
 [overrides.string]
+word_characters = ["-"]
 opt_into_language_servers = [
     "tailwindcss-language-server",
     "vscode-html-language-server",
