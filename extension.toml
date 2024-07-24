@@ -10,6 +10,9 @@ repository = "https://github.com/makifdb/zed-templ"
 name = "Templ Language Server"
 language = "Templ"
 
+[language_servers.templ.language_ids]
+"Templ" = "templ"
+
 [grammars.templ]
 repository = "https://github.com/vrischmann/tree-sitter-templ"
 commit = "71978ef587a9e4456333d62a5929949669af66fc"

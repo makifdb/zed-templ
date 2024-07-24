@@ -7,6 +7,23 @@ brackets = [
     { start = "(", end = ")", close = true, newline = false },
     { start = "[", end = "]", close = true, newline = false },
     { start = "<", end = ">", close = true, newline = false },
-    { start = "'", end = "'", close = true, newline = false, not_in = ["comment", "string"] },
-    { start = "/*", end = " */", close = true, newline = false, not_in = ["comment", "string"] },
+    { start = "'", end = "'", close = true, newline = false, not_in = [
+        "comment",
+        "string",
+    ] },
+    { start = "/*", end = " */", close = true, newline = false, not_in = [
+        "comment",
+        "string",
+    ] },
+]
+scope_opt_in_language_servers = [
+    "tailwindcss-language-server",
+    "vscode-html-language-server",
+    "emmet-language-server",
+]
+
+[overrides.string]
+opt_into_language_servers = [
+    "tailwindcss-language-server",
+    "vscode-html-language-server",
 ]
