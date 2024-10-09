@@ -38,7 +38,7 @@
 
 (component_render) @function.call
 
-(element_comment) @comment @spell
+(element_comment) @comment
 
 "@" @operator
 
