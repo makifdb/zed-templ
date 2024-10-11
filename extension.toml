@@ -1,6 +1,6 @@
 id = "templ"
 name = "Templ"
-version = "0.0.3"
+version = "0.0.4"
 schema_version = 1
 authors = ["Mehmet Akif Duba <mail@makifdb.com>"]
 description = "Templ language support for Zed"
