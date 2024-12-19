@@ -1,6 +1,6 @@
 id = "templ"
 name = "Templ"
-version = "0.0.4"
+version = "0.0.5"
 schema_version = 1
 authors = ["Mehmet Akif Duba <mail@makifdb.com>"]
 description = "Templ language support for Zed"
@@ -15,4 +15,4 @@ language = "Templ"
 
 [grammars.templ]
 repository = "https://github.com/vrischmann/tree-sitter-templ"
-commit = "71978ef587a9e4456333d62a5929949669af66fc"
+commit = "9269b5a65e79be8fb6b6669935823263343b7ba0"
