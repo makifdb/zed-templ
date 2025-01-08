@@ -1,4 +1,3 @@
-; inherits: go
 (component_declaration
   name: (component_identifier) @function)
 
@@ -6,7 +5,9 @@
   (tag_start)
   (tag_end)
   (self_closing_tag)
-  (style_element)
+  (style_tag_start)
+  (style_tag_end)
+  (self_closing_style_tag)
 ] @tag
 
 (attribute
@@ -29,7 +30,6 @@
   value: (css_property_value) @string)
 
 [
-  (expression)
   (dynamic_class_attribute_value)
 ] @function.method
 

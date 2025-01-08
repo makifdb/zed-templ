@@ -1,5 +1,3 @@
-; inherits: go
-
 (component_declaration
     "templ" @context
     name: (component_identifier) @name
@@ -23,7 +21,12 @@
 ) @item
 
 (style_element
-    name: "style" @context
+    [
+        (style_tag_start 
+            "style" @context )
+        (self_closing_style_tag
+            "style" @context )
+    ]
 ) @item
 
 (script_element

@@ -1,3 +1,6 @@
+; From https://github.com/zed-industries/zed/blob/2db2b636f24cce2066b722fd3167898e53b5296f/crates/languages/src/go/outline.scm
+
+(comment) @annotation
 (type_declaration
     "type" @context
     (type_spec
@@ -34,7 +37,7 @@
         (var_spec
             name: (identifier) @name) @item))
 
-(method_spec
+(method_elem
     name: (_) @name
     parameters: (parameter_list
       "(" @context
