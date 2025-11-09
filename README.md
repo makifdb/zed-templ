@@ -84,15 +84,15 @@ Emmet is included in the configuration above. Use it by typing abbreviations and
 ### Prettier Formatting
 To use Prettier with Templ files:
 
-1. Install the Prettier plugin for Templ:
+1. Install the [Prettier plugin for Templ](https://github.com/therealparmesh/prettier-plugin-templ-script):
 ```bash
-npm install --save-dev prettier prettier-plugin-templ
+npm install --save-dev prettier prettier-plugin-templ-script
 ```
 
 2. Add to your `.prettierrc`:
 ```json
 {
-  "plugins": ["prettier-plugin-templ"],
+  "plugins": ["prettier-plugin-templ-script"],
   "overrides": [
     {
       "files": ["*.templ"],
