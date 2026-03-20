@@ -1,0 +1,27 @@
+package examples
+
+import "fmt"
+
+templ DynamicAttributeKeys(bookID int, symbol string, midLabel string, enabled bool) {
+	<div
+		id={ fmt.Sprintf("instrument-book-%d", bookID) }
+		class="book-card"
+		{ fmt.Sprintf("data-computed-%d", bookID) }={ fmt.Sprintf("getBookTotalQty($books, %d)", bookID) }
+		{ fmt.Sprintf("data-text-%d", bookID) }={ fmt.Sprintf("getBookMidPriceStr($books, %d)", bookID) }
+	>
+		<div class="book-header">
+			<div class="book-header-left">
+				<span class="book-symbol">{ symbol }</span>
+				<span class="book-mid" data-text={ midLabel }></span>
+			</div>
+		</div>
+	</div>
+
+	if enabled {
+		<p>Highlight below should stay correct.</p>
+	}
+
+	<div>
+		<span>{ symbol }</span>
+	</div>
+}

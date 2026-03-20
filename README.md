@@ -30,8 +30,8 @@ go install github.com/a-h/templ/cmd/templ@latest
 ### 2. Verify Installation
 ```bash
 # Check that everything is installed correctly
-templ version  # Should show version like v0.2.543
-gopls version  # Should show version like v0.13.2
+templ version  # Should print an installed templ version
+gopls version  # Should print an installed gopls version
 ```
 
 ## 🚀 Installation
@@ -43,8 +43,10 @@ gopls version  # Should show version like v0.13.2
 
 ## ⚙️ Configuration
 
-### Basic Setup (No additional configuration needed)
+### Basic Setup
 The extension works out of the box for basic Templ syntax highlighting and LSP features.
+
+For manual verification examples, open the `examples/` folder in Zed. It includes a small Go module plus focused `.templ` files for syntax highlighting, Emmet, raw Go blocks, formatting behavior, and embedded language checks.
 
 ### Tailwind CSS Autocomplete
 To enable Tailwind CSS class autocomplete in Templ files, add this to your Zed settings (`cmd+,` or `ctrl+,`):
@@ -77,9 +79,14 @@ To enable Tailwind CSS class autocomplete in Templ files, add this to your Zed s
 ```
 
 ### Emmet Support
-Emmet is included in the configuration above. Use it by typing abbreviations and pressing `tab`:
+Emmet works in Templ markup when `emmet-language-server` is enabled for the `Templ` language. Use it by typing abbreviations and pressing `tab`:
 - `div.container` → `<div class="container"></div>`
 - `ul>li*3` → Creates a list with 3 items
+
+If Emmet does not expand in `.templ` files:
+1. Ensure the `emmet` extension is installed in Zed
+2. Keep `emmet-language-server` in `languages.Templ.language_servers`
+3. Restart Zed after changing language server settings
 
 ### Prettier Formatting
 To use Prettier with Templ files:
@@ -116,18 +123,29 @@ npm install --save-dev prettier prettier-plugin-templ-script
 3. Restart Zed
 
 ### "Stuck on 'Setting up workspace: Loading packages'"
-**Solution**: This was a compatibility issue with older Zed versions. Update to Zed v0.176.1 or later.
+**Solution**: This was a compatibility issue with older Zed versions. Update Zed to a recent stable release.
 
 ### "Spaces inserted between {{ }}" or "Raw Go code syntax issues"
-**Problem**: When typing `{{`, the editor might insert spaces making it `{ {`, or syntax highlighting breaks after raw Go blocks.
+**Problem**: Raw Go blocks can be sensitive to editor auto-pairing and `templ fmt`. In practice this can show up as `{{` turning into `{ {`, or formatting/highlighting getting confused around raw Go blocks.
 
 **Workarounds**:
 1. Type `{{` quickly without pause
 2. Use the undo function if spaces are inserted
 3. For raw Go blocks, ensure your code is syntactically valid
+4. If `templ fmt` rewrites the block, disable format on save for Templ files:
+
+```json
+{
+  "languages": {
+    "Templ": {
+      "format_on_save": "off"
+    }
+  }
+}
+```
 
 ### "Empty lines are deleted on save"
-**Note**: This is a known issue with the Templ formatter. You can disable format on save:
+**Note**: This comes from the `templ fmt` formatter rather than the Zed extension itself. You can disable format on save:
 ```json
 {
   "languages": {

@@ -25,6 +25,7 @@ brackets = [
         "string",
     ] },
 ]
+completion_query_characters = ["-"]
 tab_size = 4
 hard_tabs = true
 scope_opt_in_language_servers = [
@@ -32,6 +33,13 @@ scope_opt_in_language_servers = [
     "vscode-html-language-server",
     "emmet-language-server",
 ]
+
+[overrides.default]
+opt_into_language_servers = [
+    "vscode-html-language-server",
+    "emmet-language-server",
+]
+linked_edit_characters = ["-"]
 
 [overrides.string]
 completion_query_characters = ["-"]

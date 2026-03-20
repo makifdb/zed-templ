@@ -1,0 +1,18 @@
+package examples
+
+templ EmbeddedLanguages(themeColor string) {
+	<style>
+		.card {
+			border-color: { themeColor };
+		}
+	</style>
+
+	<script>
+		const label = "templ";
+		console.log(label);
+	</script>
+
+	<div class={ "card rounded-lg p-4" }>
+		<p>Embedded CSS and JavaScript should still highlight correctly.</p>
+	</div>
+}

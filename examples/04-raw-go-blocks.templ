@@ -1,0 +1,8 @@
+package examples
+
+import "fmt"
+
+templ RawGoBlocks(count int) {
+	{{ formattedCount := fmt.Sprintf("%d", count) }}
+	<div>{ formattedCount }</div>
+}
