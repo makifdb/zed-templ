@@ -30,7 +30,12 @@
 ) @item
 
 (script_element
-    name: "script" @context
+    [
+        (script_tag_start
+            "script" @context)
+        (self_closing_script_tag
+            "script" @context)
+    ]
 ) @item
 
 (element
