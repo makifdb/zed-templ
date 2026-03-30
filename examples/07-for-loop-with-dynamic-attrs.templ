@@ -1,0 +1,72 @@
+package examples
+
+import "fmt"
+
+templ DynamicAttributeKeysForLoop(bookID int, items []string, enabled bool) {
+	<div
+		id={ fmt.Sprintf("instrument-book-%d", bookID) }
+		class="book-card"
+		{ fmt.Sprintf("data-computed-%d", bookID) }={ fmt.Sprintf("getBookTotalQty($books, %d)", bookID) }
+		{ fmt.Sprintf("data-text-%d", bookID) }={ fmt.Sprintf("getBookMidPriceStr($books, %d)", bookID) }
+	>
+		<div class="book-header">
+			<div class="book-header-left">
+				<span class="book-symbol">Symbol</span>
+				<span class="book-mid" data-text="mid-label"></span>
+			</div>
+		</div>
+		
+		<!-- This is the problematic case: for loop inside component with attribute key expressions -->
+		<div>
+			for i := 10; i > 0; i-- {
+				<div>
+					<button>Hello World { i }</button>
+				</div>
+			}
+		</div>
+		
+		if enabled {
+			<p>Highlight below should stay correct.</p>
+		}
+		
+		<div>
+			<span>Symbol</span>
+		</div>
+	</div>
+}
+
+templ DynamicAttributeKeysForLoopItems(bookID int, items []string) {
+	<div
+		id={ fmt.Sprintf("instrument-book-%d", bookID) }
+		class="book-card"
+	>
+		<!-- For loop immediately after dynamic attribute key expressions -->
+		for _, item := range items {
+			<div class="item-row">
+				<span>{ item }</span>
+			</div>
+		}
+	</div>
+}
+
+templ DynamicAttributeKeysComplex(bookID int, data map[string]string, enabled bool) {
+	<div
+		id={ fmt.Sprintf("book-%d", bookID) }
+		{ fmt.Sprintf("data-attr-%d", bookID) }="value"
+		class="container"
+	>
+		<!-- Multiple dynamic attributes + for loop -->
+		for key, value := range data {
+			<div
+				{ fmt.Sprintf("data-key-%s", key) }={ value }
+				class="data-row"
+			>
+				<span>{ key }: { value }</span>
+			</div>
+		}
+		
+		if enabled {
+			<p>Additional content</p>
+		}
+	</div>
+}
