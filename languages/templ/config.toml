@@ -26,6 +26,7 @@ brackets = [
     ] },
 ]
 completion_query_characters = ["-"]
+word_characters = ["-", "@"]
 tab_size = 4
 hard_tabs = true
 scope_opt_in_language_servers = [
@@ -40,6 +41,11 @@ opt_into_language_servers = [
     "emmet-language-server",
 ]
 linked_edit_characters = ["-"]
+
+[overrides.element]
+opt_into_language_servers = [
+    "emmet-language-server",
+]
 
 [overrides.string]
 completion_query_characters = ["-"]

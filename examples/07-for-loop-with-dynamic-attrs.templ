@@ -15,7 +15,6 @@ templ DynamicAttributeKeysForLoop(bookID int, items []string, enabled bool) {
 				<span class="book-mid" data-text="mid-label"></span>
 			</div>
 		</div>
-		
 		<!-- This is the problematic case: for loop inside component with attribute key expressions -->
 		<div>
 			for i := 10; i > 0; i-- {
@@ -24,11 +23,9 @@ templ DynamicAttributeKeysForLoop(bookID int, items []string, enabled bool) {
 				</div>
 			}
 		</div>
-		
 		if enabled {
 			<p>Highlight below should stay correct.</p>
 		}
-		
 		<div>
 			<span>Symbol</span>
 		</div>
@@ -64,7 +61,6 @@ templ DynamicAttributeKeysComplex(bookID int, data map[string]string, enabled bo
 				<span>{ key }: { value }</span>
 			</div>
 		}
-		
 		if enabled {
 			<p>Additional content</p>
 		}

@@ -1,0 +1,45 @@
+package examples
+
+// Manual verification fixture for Emmet scope inside .templ files.
+//
+// What to test in Zed:
+// 1. In normal markup regions, Emmet abbreviations should expand.
+// 2. Inside <script> and <style>, Emmet should not feel like the primary tool.
+// 3. Dynamic templ expressions should not break nearby markup editing.
+templ EmmetScopeCheck(title string, items []string, color string) {
+	<div class="page-shell">
+		<h1>{ title }</h1>
+		<!--
+		Markup test points:
+		- try: div.container
+		- try: ul>li*3
+		- try: button.btn-primary
+		-->
+		<section class="emmet-target">
+			<div></div>
+		</section>
+		<div { "data-" + "state" }="active">
+			for _, item := range items {
+				<span class="chip">{ item }</span>
+			}
+		</div>
+		<style>
+			.card {
+				border-color: { color };
+			}
+
+			/*
+			Style test point:
+			- Emmet should not interfere with normal CSS editing here.
+			*/
+		</style>
+		<script>
+			const label = "templ";
+			const list = ["one", "two", "three"];
+			console.log(label, list);
+
+			// Script test point:
+			// Emmet should not interfere with normal JavaScript editing here.
+		</script>
+	</div>
+}
