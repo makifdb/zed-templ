@@ -1,6 +1,17 @@
-(element_comment) @comment
+[
+  (element_comment)
+  (comment)
+] @comment.inclusive
 
-(quoted_attribute_value) @string
+[
+  (interpreted_string_literal)
+  (raw_string_literal)
+  (rune_literal)
+  (attribute_value)
+  (quoted_attribute_value)
+] @string
+
+(element) @element
 
 [
   (tag_start)
